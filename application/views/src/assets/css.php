@@ -6,9 +6,14 @@
 <link rel="stylesheet" href="<?= base_url('assets/') ?>dist/vendors/flags-icon/css/flag-icon.min.css">
 <!-- END Template CSS-->
 
-<!-- START: Page CSS-->
+<!-- START: Page CSS Charts-->
 <link rel="stylesheet" href="<?= base_url('assets/') ?>dist/vendors/chartjs/Chart.min.css">
-<!-- END: Page CSS-->
+<!-- END: Page CSS Charts-->
+
+<!-- START: Page CSS Datatable-->
+<link rel="stylesheet" href="<?= base_url('assets/') ?>dist/vendors/datatable/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" href="<?= base_url('assets/') ?>dist/vendors/datatable/buttons/css/buttons.bootstrap4.min.css" />
+<!-- END: Page CSS Datatable-->
 
 <!-- START: Page CSS-->
 <link rel="stylesheet" href="<?= base_url('assets/') ?>dist/vendors/morris/morris.css">
