@@ -33,4 +33,28 @@ class Main extends CI_Controller
 		$this->load->view('src/grafik', $data);
 		$this->load->view('src/assets/footer');
 	}
+
+	function laporan_organik()
+	{
+		$data = array(
+			'sampah_organik' => $this->main_model->get_sampah_organik()->result(),
+			'sampah_anorganik' => $this->main_model->get_sampah_anorganik()->result(),
+		);
+
+		$this->load->view('src/assets/header');
+		$this->load->view('src/laporan_organik', $data);
+		$this->load->view('src/assets/footer');
+	}
+
+	function laporan_anorganik()
+	{
+		$data = array(
+			'sampah_organik' => $this->main_model->get_sampah_organik()->result(),
+			'sampah_anorganik' => $this->main_model->get_sampah_anorganik()->result(),
+		);
+
+		$this->load->view('src/assets/header');
+		$this->load->view('src/laporan_anorganik', $data);
+		$this->load->view('src/assets/footer');
+	}
 }

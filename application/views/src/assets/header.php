@@ -90,7 +90,8 @@
                 </li>
                 <li class="dropdown active"><a href="#"><i class="icon-notebook mr-1"></i> Laporan</a>
                     <ul>
-                        <li><a href="<?= base_url('laporan') ?>"><i class="icon-doc"></i> Laporan</a></li>
+                        <li><a href="<?= base_url('laporan_organik') ?>"><i class="icon-doc"></i> Lap. Sampah Organik</a></li>
+                        <li><a href="<?= base_url('laporan_anorganik') ?>"><i class="icon-doc"></i> Lap. Sampah Anorganik</a></li>
                     </ul>
                 </li>
             </ul>

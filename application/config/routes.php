@@ -53,7 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // Menu 
 $route['dashboard'] = 'Main';
 $route['grafik'] = 'Main/grafik';
-$route['laporan'] = 'Main/laporan';
+$route['laporan_organik'] = 'Main/laporan_organik';
+$route['laporan_anorganik'] = 'Main/laporan_anorganik';
 
 $route['default_controller'] = 'Main/index';
 $route['404_override'] = '';
