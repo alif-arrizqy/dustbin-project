@@ -34,4 +34,5 @@
 
 <!-- START: Page JS-->
 <script src="<?= base_url('assets/') ?>dist/js/home.script.js"></script>
+<script src="<?= base_url('assets/') ?>dist/js/chartjs.script.js"></script>
 <!-- END: Page JS-->

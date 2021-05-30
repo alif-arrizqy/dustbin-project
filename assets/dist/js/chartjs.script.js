@@ -53,41 +53,143 @@
         purple: 'rgb(153, 102, 255)',
         grey: 'rgb(201, 203, 207)'
     };
-    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var MONTHS = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
     var color = Chart.helpers.color;
 
-    var barChartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+/////////////////////////////////////////// Sampah Organik ///////////////////////////////////////////////////
+    var barChartDataMingguanOrganik = {
+        labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
         datasets: [{
-                label: 'Dataset 1',
+                label: 'Tinggi Sampah',
                 backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
                 borderColor: window.chartColors.red,
                 borderWidth: 1,
-                data: [35, 60, -10, -30, -25, -90, 70]
+                data: [35, 60, 10, 30, 25, 90, 70]
 
             }, {
-                label: 'Dataset 2',
+                label: 'Gas Metana',
                 backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
                 borderColor: window.chartColors.blue,
                 borderWidth: 1,
-                data: [-70, -55, 90, -90, 25, 70, 40]
+                data: [70, 55, 90, 10, 25, 70, 40]
             }]
 
     };
 
-    var chartjs_vertical_bar = document.getElementById("chartjs-vertical-bar");
-    if (chartjs_vertical_bar) {
-        var ctx = document.getElementById('chartjs-vertical-bar').getContext('2d');
+    var barChartDataBulananOrganik = {
+        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+        datasets: [{
+                label: 'Tinggi Sampah',
+                backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+                borderColor: window.chartColors.red,
+                borderWidth: 1,
+                data: [35, 60, 10, 30, 25, 90, 70, 20, 30, 23, 34, 11]
+
+            }, {
+                label: 'Gas Metana',
+                backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+                borderColor: window.chartColors.blue,
+                borderWidth: 1,
+                data: [70, 55, 90, 90, 25, 70, 40, 22, 35, 45, 11, 30]
+            }]
+
+    };
+
+    var grafik_mingguan_organik = document.getElementById("grafik-mingguan-organik");
+    if (grafik_mingguan_organik) {
+        var ctx = document.getElementById('grafik-mingguan-organik').getContext('2d');
         window.myBar = new Chart(ctx, {
             type: 'bar',
             maintainAspectRatio: false,
             responsive: true,
-            data: barChartData,
+            data: barChartDataMingguanOrganik,
             options
         });
 
 
     }
+
+    var grafik_bulanan_organik = document.getElementById("grafik-bulanan-organik");
+    if (grafik_bulanan_organik) {
+        var ctx = document.getElementById('grafik-bulanan-organik').getContext('2d');
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            maintainAspectRatio: false,
+            responsive: true,
+            data: barChartDataBulananOrganik,
+            options
+        });
+
+
+    }
+
+
+/////////////////////////////////////////// Sampah Non Organik ///////////////////////////////////////////////////
+var barChartDataMingguanAnorganik = {
+    labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+    datasets: [{
+            label: 'Tinggi Sampah',
+            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.red,
+            borderWidth: 1,
+            data: [35, 60, 10, 30, 25, 90, 70]
+
+        }, {
+            label: 'Gas Metana',
+            backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.blue,
+            borderWidth: 1,
+            data: [70, 55, 90, 10, 25, 70, 40]
+        }]
+
+};
+
+var barChartDataBulananAnorganik = {
+    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+    datasets: [{
+            label: 'Tinggi Sampah',
+            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.red,
+            borderWidth: 1,
+            data: [35, 60, 10, 30, 25, 90, 70, 20, 30, 23, 34, 11]
+
+        }, {
+            label: 'Gas Metana',
+            backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.blue,
+            borderWidth: 1,
+            data: [70, 55, 90, 90, 25, 70, 40, 22, 35, 45, 11, 30]
+        }]
+
+};
+
+var grafik_mingguan_anorganik = document.getElementById("grafik-mingguan-anorganik");
+if (grafik_mingguan_anorganik) {
+    var ctx = document.getElementById('grafik-mingguan-anorganik').getContext('2d');
+    window.myBar = new Chart(ctx, {
+        type: 'bar',
+        maintainAspectRatio: false,
+        responsive: true,
+        data: barChartDataMingguanAnorganik,
+        options
+    });
+
+
+}
+
+var grafik_bulanan_anorganik = document.getElementById("grafik-bulanan-anorganik");
+if (grafik_bulanan_anorganik) {
+    var ctx = document.getElementById('grafik-bulanan-anorganik').getContext('2d');
+    window.myBar = new Chart(ctx, {
+        type: 'bar',
+        maintainAspectRatio: false,
+        responsive: true,
+        data: barChartDataBulananAnorganik,
+        options
+    });
+
+
+}
 
 /////////////////////// Verticle Bar ///////////////////////////////////////
     var chartjs_horizontal_bar = document.getElementById("chartjs-horizontal-bar");

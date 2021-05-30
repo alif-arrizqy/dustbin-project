@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Smart Dustbin</title>
-    <link rel="shortcut icon" href="<?= base_url('assets/')?>dist/images/trash32.png" />
+    <link rel="shortcut icon" href="<?= base_url('assets/') ?>dist/images/trash32.png" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <?php $this->load->view('src/assets/css'); ?>
 </head>
@@ -21,7 +21,7 @@
         <div class="site-width">
             <nav class="navbar navbar-expand-lg  p-0">
                 <div class="navbar-header  h-100 h4 mb-0 align-self-center logo-bar text-left">
-                    <a href="index.html" class="horizontal-logo text-left">
+                    <a href="<?= base_url('dashboard') ?>" class="horizontal-logo text-left">
                         <!-- <svg height="20pt" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512" width="20pt" xmlns="http://www.w3.org/2000/svg">
                             <g transform="matrix(.1 0 0 -.1 0 512)" fill="#1e3d73">
                                 <path d="m1450 4481-1105-638v-1283-1283l1106-638c1033-597 1139-654 1139-619 0 4-385 674-855 1489-470 814-855 1484-855 1488 0 8 1303 763 1418 822 175 89 413 166 585 190 114 16 299 13 408-5 100-17 231-60 314-102 310-156 569-509 651-887 23-105 23-331 0-432-53-240-177-460-366-651-174-175-277-247-738-512-177-102-322-189-322-193s104-188 231-407l231-400 46 28c26 15 360 207 742 428l695 402v1282 1282l-1105 639c-608 351-1107 638-1110 638s-502-287-1110-638z" />
@@ -80,34 +80,17 @@
             <ul id="side-menu" class="sidebar-menu">
                 <li class="dropdown active"><a href="#"><i class="icon-home mr-1"></i> Dashboard</a>
                     <ul>
-                        <li class="active"><a href="index.html"><i class="icon-rocket"></i> Dashboard</a></li>
-                        <li><a href="index-account.html"><i class="icon-layers"></i> Account</a></li>
-                        <li><a href="index-analytic.html"><i class="icon-grid"></i> Analytic</a></li>
+                        <li class=""><a href="<?= base_url('dashboard') ?>"><i class="icon-home"></i> Dashboard</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#"><i class="icon-organization mr-1"></i> Menu 2</a>
+                <li class="dropdown"><a href="#"><i class="icon-organization mr-1"></i> Data</a>
                     <ul>
-                        <li class="dropdown"><a href="#"><i class="icon-options"></i>Horizontal</a>
-                            <ul class="sub-menu">
-                                <li><a href="layout-horizontal.html"><i class="icon-energy"></i> Light</a></li>
-                                <li><a href="layout-horizontal-semidark.html"><i class="icon-disc"></i> Semi Dark</a></li>
-                                <li><a href="layout-horizontal-dark.html"><i class="icon-frame"></i> Dark</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#"><i class="icon-options-vertical"></i>Vertical</a>
-                            <ul class="sub-menu">
-                                <li><a href="layout-vertical.html"><i class="icon-energy"></i> Light</a></li>
-                                <li><a href="layout-vertical-semidark.html"><i class="icon-disc"></i> Semi Dark</a></li>
-                                <li><a href="layout-vertical-dark.html"><i class="icon-frame"></i> Dark</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="<?= base_url('grafik') ?>"><i class="icon-graph"></i> Grafik</a></li>
                     </ul>
                 </li>
-                <li class="dropdown active"><a href="#"><i class="icon-home mr-1"></i> Menu 3</a>
+                <li class="dropdown active"><a href="#"><i class="icon-notebook mr-1"></i> Laporan</a>
                     <ul>
-                        <li class="active"><a href="index.html"><i class="icon-rocket"></i> Sub Menu3</a></li>
-                        <li><a href="index-account.html"><i class="icon-layers"></i> Sub Menu 3</a></li>
-                        <li><a href="index-analytic.html"><i class="icon-grid"></i> Sub Menu 3</a></li>
+                        <li><a href="<?= base_url('laporan') ?>"><i class="icon-doc"></i> Laporan</a></li>
                     </ul>
                 </li>
             </ul>
