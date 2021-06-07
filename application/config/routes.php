@@ -55,6 +55,7 @@ $route['dashboard'] = 'Main';
 $route['grafik'] = 'Main/grafik';
 $route['laporan_organik'] = 'Main/laporan_organik';
 $route['laporan_anorganik'] = 'Main/laporan_anorganik';
+$route['save_sampah_organik/(:num)/(:num)/(:any)'] = 'Main/save_sampah_organik/$1/$2/$3';
 
 $route['default_controller'] = 'Main/index';
 $route['404_override'] = '';
