@@ -17,14 +17,20 @@ class Main extends BaseController
 
 	public function index()
 	{
-		// $date = time();
-		// $bulan = date("m", $date);
-		// $data['kwh'] = $this->mainModel->kwh_bulan($bulan);
-		// $data['jumlah'] = $this->mainModel->biaya_bulan($bulan);
-		// $data['token'] = $this->mainModel->getDataToken();
+		// tampil data realtime
 		$data['sampah_organik'] = $this->mainModel->get_sampah_organik();
 		$data['sampah_anorganik'] = $this->mainModel->get_sampah_anorganik();
+		// get data buat ke grafik
+		$date = time();
+		$bulan = date("m", $date);
+		$data['rekap_bulan_organik'] = $this->mainModel->get_rekap_bulan_org($bulan);
+		$data['rekap_bulan_anorganik'] = $this->mainModel->get_rekap_bulan_anorg($bulan);
 		return view('pages/index', $data);
+	}
+
+	public function grafik()
+	{
+		return view('pages/grafik');
 	}
 
 	public function save_sampah_organik($tinggi, $metana, $status)

@@ -24,4 +24,17 @@ class mainModel extends Model
         $query = $this->db->table('sampah_organik')->insert($kirimdata);
         return $query;
     }
+
+    // untuk grafik
+    public function get_rekap_bulan_org($bulan)
+    {
+        $query = $this->db->query("SELECT SUM(tinggi) AS total_tinggi, SUM(metana) AS total_metana FROM sampah_organik WHERE bulan = '$bulan'");
+        return $query;
+    }
+
+    public function get_rekap_bulan_anorg($bulan)
+    {
+        $query = $this->db->query("SELECT SUM(tinggi) AS total_tinggi, SUM(metana) AS total_metana FROM sampah_anorganik WHERE bulan = '$bulan'");
+        return $query;
+    }
 }
