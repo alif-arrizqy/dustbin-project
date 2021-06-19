@@ -30,12 +30,12 @@
                     <li><a href="<?= base_url('grafik') ?>"><i class="icon-graph"></i> Grafik</a></li>
                 </ul>
             </li>
-            <li class="dropdown active"><a href="#"><i class="icon-notebook mr-1"></i> Laporan</a>
+            <!-- <li class="dropdown active"><a href="#"><i class="icon-notebook mr-1"></i> Laporan</a>
                 <ul>
                     <li><a href="<?= base_url('laporan_organik') ?>"><i class="icon-doc"></i> Lap. Sampah Organik</a></li>
                     <li><a href="<?= base_url('laporan_anorganik') ?>"><i class="icon-doc"></i> Lap. Sampah Anorganik</a></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
         <!-- END: Menu-->
         <ol class="breadcrumb bg-transparent align-self-center m-0 p-0 ml-auto">

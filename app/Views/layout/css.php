@@ -6,10 +6,6 @@
 <link rel="stylesheet" href="<?= base_url('public/dist/vendors/flags-icon/css/flag-icon.min.css') ?>">
 <!-- END Template CSS-->
 
-<!-- START: Page CSS Charts-->
-<link rel="stylesheet" href="<?= base_url('public/dist/vendors/chartjs/Chart.min.css') ?>">
-<!-- END: Page CSS Charts-->
-
 <!-- START: Page CSS Datatable-->
 <link rel="stylesheet" href="<?= base_url('public/dist/vendors/datatable/css/dataTables.bootstrap4.min.css') ?>" />
 <link rel="stylesheet" href="<?= base_url('public/dist/vendors/datatable/buttons/css/buttons.bootstrap4.min.css') ?>" />
@@ -26,3 +22,6 @@
 <!-- START: Custom CSS-->
 <link rel="stylesheet" href="<?= base_url('public/dist/css/main.css') ?>">
 <!-- END: Custom CSS-->
+
+<!-- Chart -->
+<script src="<?= base_url('public/dist/chart/dist/Chart.min.js') ?>"></script>

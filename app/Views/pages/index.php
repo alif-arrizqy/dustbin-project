@@ -1,6 +1,6 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
-<!-- <meta http-equiv="refresh" content="10; url=" <?php echo $_SERVER['PHP_SELF']; ?>"> -->
+<meta http-equiv="refresh" content="10; url=" <?php echo $_SERVER['PHP_SELF']; ?>">
 <!-- START: Main Content-->
 <main>
     <div class="container-fluid site-width">
@@ -40,19 +40,20 @@
                                         $status_organik = $organik->status;
                                     }
 
-                                    // get SUM data buat rekap perbulan
-                                    foreach ($rekap_bulan_organik->getResult() as $rek_bln_organik) {
-                                        $rek_bln_tinggi_organik = $rek_bln_organik->total_tinggi;
-                                        $rek_bln_metana_organik = $rek_bln_organik->total_metana;
+                                    // get SUM data buat rekap perhari
+                                    foreach ($rekap_organik->getResult() as $rek_organik) {
+                                        $rek_tinggi_organik = $rek_organik->total_tinggi;
+                                        $rek_metana_organik = $rek_organik->total_metana;
                                     }
 
-                                    // update data tinggi & metana ke tabel rekap bulanan organik
-                                    $data_org['tinggi'] = $rek_bln_tinggi_organik;
-                                    $data_org['metana'] = $rek_bln_metana_organik;
+                                    // update data tinggi & metana ke tabel rekap harian organik
+                                    $data_org['tinggi'] = $rek_tinggi_organik;
+                                    $data_org['metana'] = $rek_metana_organik;
+
                                     $date = time();
-                                    $bln = date("M", $date);
+                                    $tgl = date("Y-m-d", $date);
                                     $db = \Config\Database::connect();
-                                    $update_org = $db->table('rekap_bulan_organik')->where('bulan', $bln)->update($data_org);
+                                    $update_org = $db->table('rekap_organik')->where('tanggal', $tgl)->update($data_org);
 
                                     if ($tinggi_organik != 0) { ?>
                                         <p class="mb-0 font-w-800 tx-s-12">Ketinggian Sampah : <?= $tinggi_organik ?> cm </p>
@@ -102,7 +103,39 @@
                                         </div>
                                     </div>
                                 <?php } ?>
-                                <?php if ($status_organik == 'penuh1') { ?>
+                                <?php if ($status_organik == 'penuh1') {
+                                    date_default_timezone_set('Asia/Jakarta');
+                                    $jam = date('H:i');
+                                    if ($jam > '06:00' && $jam < '10:00') {
+                                        $salam = "Selamat pagi,";
+                                    } else if ($jam > '10:01' && $jam < '15:00') {
+                                        $salam = "Selamat Siang,";
+                                    } else if ($jam > '15:01' && $jam < '18:00') {
+                                        $salam = 'Selamat sore,';
+                                    } else {
+                                        $salam = 'Selamat Malam,';
+                                    }
+
+                                    $date = date('d F Y') . '%0A';
+                                    $token = '1810276529:AAF9dsuvZfnsCRbOErgMn9x_K2GGEmo3QBE';
+                                    $message = $date . $salam . 'Mohon kepada petugas kebersihan, untuk membersihkan sampah di RT 02.  ' .
+                                        ' %0AJagalah kebersihan dan Terima kasih sudah membersihkan :) ';
+                                    $api = 'https://api.telegram.org/bot' . $token . '/sendMessage?chat_id=908456455&text=' . $message . '';
+                                    $ch = curl_init($api);
+                                    curl_setopt($ch, CURLOPT_HEADER, false);
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                    curl_setopt($ch, CURLOPT_POST, 1);
+                                    // curl_setopt($ch, CURLOPT_POSTFIELDS, ($params));
+                                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                                    $result = curl_exec($ch);
+                                    curl_close($ch);
+                                    // var_dump($api);
+
+                                    // auto refresh web setiap 1 menit
+                                    $url = $_SERVER['REQUEST_URI'];
+                                    header("Refresh: 300; URL=$url");
+                                    redirect()->to('/');
+                                ?>
                                     <div class="card bg-danger my-6 text-left">
                                         <div class="card-body">
                                             <div class="content my-3">
@@ -132,7 +165,7 @@
             <div class="col-md-6 col-lg-6 mt-3">
                 <div class="card overflow-hidden">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6 class="card-title">Sampah non Organik</h6>
+                        <h6 class="card-title">Sampah Anorganik</h6>
                     </div>
                     <div class="card-content">
                         <div class="card-body p-4 text-center">
@@ -146,19 +179,20 @@
                                     $status_anorganik = $anorganik->status;
                                 }
 
-                                // get SUM data buat rekap perbulan
-                                foreach ($rekap_bulan_anorganik->getResult() as $rek_bln_anorganik) {
-                                    $rek_bln_tinggi_anorganik = $rek_bln_anorganik->total_tinggi;
-                                    $rek_bln_metana_anorganik = $rek_bln_anorganik->total_metana;
+                                // get SUM data buat rekap perhari
+                                foreach ($rekap_organik->getResult() as $rek_organik) {
+                                    $rek_tinggi_organik = $rek_organik->total_tinggi;
+                                    $rek_metana_organik = $rek_organik->total_metana;
                                 }
 
-                                // update data tinggi & metana ke tabel rekap bulanan organik
-                                $data_anorg['tinggi'] = $rek_bln_tinggi_anorganik;
-                                $data_anorg['metana'] = $rek_bln_metana_anorganik;
+                                // update data tinggi & metana ke tabel rekap harian organik
+                                $data_org['tinggi'] = $rek_tinggi_organik;
+                                $data_org['metana'] = $rek_metana_organik;
+
                                 $date = time();
-                                $m = date("M", $date);
-                                $dbs = \Config\Database::connect();
-                                $update_anorg = $dbs->table('rekap_bulan_anorganik')->where('bulan', $m)->update($data_anorg);
+                                $tgl = date("Y-m-d", $date);
+                                $db = \Config\Database::connect();
+                                $update_org = $db->table('rekap_anorganik')->where('tanggal', $tgl)->update($data_org);
 
                                 if ($tinggi_anorganik != 0) { ?>
                                     <p class="mb-0 font-w-800 tx-s-12">Ketinggian Sampah : <?= $tinggi_anorganik ?> cm </p>
@@ -205,7 +239,39 @@
                                     </div>
                                 </div>
                             <?php } ?>
-                            <?php if ($status_anorganik == 'penuh1') { ?>
+                            <?php if ($status_anorganik == 'penuh1') {
+                                date_default_timezone_set('Asia/Jakarta');
+                                $jam = date('H:i');
+                                if ($jam > '06:00' && $jam < '10:00') {
+                                    $salam = "Selamat pagi,";
+                                } else if ($jam > '10:01' && $jam < '15:00') {
+                                    $salam = "Selamat Siang,";
+                                } else if ($jam > '15:01' && $jam < '18:00') {
+                                    $salam = 'Selamat sore,';
+                                } else {
+                                    $salam = 'Selamat Malam,';
+                                }
+
+                                $date = date('d F Y') . '%0A';
+                                $token = '1810276529:AAF9dsuvZfnsCRbOErgMn9x_K2GGEmo3QBE';
+                                $message = $date . $salam . 'Mohon kepada petugas kebersihan, untuk membersihkan sampah di RT 02.  ' .
+                                    ' %0AJagalah kebersihan dan Terima kasih sudah membersihkan :) ';
+                                $api = 'https://api.telegram.org/bot' . $token . '/sendMessage?chat_id=908456455&text=' . $message . '';
+                                $ch = curl_init($api);
+                                curl_setopt($ch, CURLOPT_HEADER, false);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                curl_setopt($ch, CURLOPT_POST, 1);
+                                // curl_setopt($ch, CURLOPT_POSTFIELDS, ($params));
+                                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                                $result = curl_exec($ch);
+                                curl_close($ch);
+                                // var_dump($api);
+
+                                // auto refresh web setiap 1 menit
+                                $url = $_SERVER['REQUEST_URI'];
+                                header("Refresh: 300; URL=$url");
+                                redirect()->to('/');
+                            ?>
                                 <div class="card bg-danger my-6 text-left">
                                     <div class="card-body">
                                         <div class="content my-3">
@@ -236,12 +302,3 @@
     </div>
 </main>
 <?= $this->endSection(); ?>
-<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-    $(document).ready(function() {
-        $("#div_refresh").load("index.php");
-        setInterval(function() {
-            $("#div_refresh").load("index.php");
-        }, 1000);
-    });
-</script> -->

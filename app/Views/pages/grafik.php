@@ -1,3 +1,5 @@
+<?= $this->extend('layout/template'); ?>
+<?= $this->section('content'); ?>
 <!-- START: Main Content-->
 <main>
     <div class="container-fluid site-width">
@@ -17,257 +19,184 @@
                 </div>
             </div>
         </div>
-        <!-- END: Breadcrumbs-->
-
-        <!-- START: Card Data-->
-        <?php
-        // Data Sampah Organik
-        foreach ($sampah_organik as $organik) :
-            $tinggi_organik = $organik->tinggi;
-            $metana_organik = $organik->metana;
-            $status_organik = $organik->status;
-        endforeach;
-        ?>
         <div class="row">
-            <!-- Grafik Sampah Organik -->
-            <!-- Grafik Mingguan -->
-            <div class="col-md-6 col-lg-6 mt-3">
+            <div class="col-md-6 col-lg-9 mt-3">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="card-title">Grafik Minggu Ini Sampah Organik</h6>
                     </div>
                     <div class="card-body text-center">
-                        <canvas id="grafik-mingguan-organik"></canvas>
+                        <canvas id="myChart"></canvas>
                     </div>
                 </div>
             </div>
 
             <!-- Grafik Bulanan -->
-            <div class="col-md-6 col-lg-6 mt-3">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6 class="card-title">Grafik Bulan .. Sampah Organik</h6>
-                    </div>
-                    <div class="card-body text-center">
-                        <canvas id="grafik-bulanan-organik"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Grafik Sampah Anorganik -->
-            <!-- Grafik Mingguan -->
-            <div class="col-md-6 col-lg-6 mt-3">
+            <div class="col-md-6 col-lg-9 mt-3">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="card-title">Grafik Minggu Ini Sampah Anorganik</h6>
                     </div>
                     <div class="card-body text-center">
-                        <canvas id="grafik-mingguan-anorganik"></canvas>
+                        <canvas id="myGrafik"></canvas>
                     </div>
                 </div>
             </div>
-
-            <!-- Grafik Bulanan -->
-            <div class="col-md-6 col-lg-6 mt-3">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6 class="card-title">Grafik Bulan .. Sampah Anorganik</h6>
-                    </div>
-                    <div class="card-body text-center">
-                        <canvas id="grafik-bulanan-anorganik"></canvas>
-                    </div>
+            <!-- <?php
+            for ($i = 0; $i < 15; $i++) { ?>
+                <div class="col-md-12 col-lg-12 mt-3">
+                    <div class="clearfix"></div>
                 </div>
-            </div>
+            <?php } ?> -->
         </div>
         <!-- END: Card DATA-->
     </div>
 </main>
 
+<?php
+foreach ($data_rekap_organik as $rs) {
+    $tgl[] = $rs['tanggal'];
+    $tinggi[] = $rs['tinggi'];
+    $metana[] = $rs['metana'];
+}
+$thn = date('Y');
+?>
+<?php
+foreach ($data_rekap_anorganik as $rsl) {
+    $tg[] = $rsl['tanggal'];
+    $t[] = $rsl['tinggi'];
+    $m[] = $rsl['metana'];
+}
+$thn = date('Y');
+?>
+
 <script>
-    var primarycolor = getComputedStyle(document.body).getPropertyValue('--primarycolor');
-    var bordercolor = getComputedStyle(document.body).getPropertyValue('--bordercolor');
-    var bodycolor = getComputedStyle(document.body).getPropertyValue('--bodycolor');
-
-    var options = {
-        responsive: true,
-        legend: {
-            position: 'top',
-            labels: {
-                fontColor: bodycolor
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?php echo json_encode($tgl) ?>,
+            datasets: [{
+                label: 'Tinggi',
+                data: <?php echo json_encode($tinggi) ?>,
+                backgroundColor: [
+                    'rgba(73, 211, 132, 0.5)',
+                    'rgba(73, 211, 132, 0.5)',
+                    'rgba(73, 211, 132, 0.5)',
+                    'rgba(73, 211, 132, 0.5)',
+                    'rgba(73, 211, 132, 0.5)',
+                    'rgba(73, 211, 132, 0.5)',
+                    'rgba(73, 211, 132, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(73, 211, 132, 1)',
+                    'rgba(73, 211, 132, 1)',
+                    'rgba(73, 211, 132, 1)',
+                    'rgba(73, 211, 132, 1)',
+                    'rgba(73, 211, 132, 1)',
+                    'rgba(73, 211, 132, 1)',
+                    'rgba(73, 211, 132, 1)',
+                ],
+                borderWidth: 1
+            },{
+                label: 'Metana',
+                data: <?php echo json_encode($metana) ?>,
+                backgroundColor: [
+                    'rgba(16, 51, 41, 0.5)',
+                    'rgba(16, 51, 41, 0.5)',
+                    'rgba(16, 51, 41, 0.5)',
+                    'rgba(16, 51, 41, 0.5)',
+                    'rgba(16, 51, 41, 0.5)',
+                    'rgba(16, 51, 41, 0.5)',
+                    'rgba(16, 51, 41, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(16, 51, 41, 1)',
+                    'rgba(16, 51, 41, 1)',
+                    'rgba(16, 51, 41, 1)',
+                    'rgba(16, 51, 41, 1)',
+                    'rgba(16, 51, 41, 1)',
+                    'rgba(16, 51, 41, 1)',
+                    'rgba(16, 51, 41, 1)',
+                ],
+                borderWidth: 1
             }
+            ]
         },
-        scales: {
-            xAxes: [{
-                display: true,
-                gridLines: {
-                    display: true,
-                    color: bordercolor,
-                    zeroLineColor: bordercolor
-                },
-                ticks: {
-                    fontColor: bodycolor,
-
-                },
-            }],
-            yAxes: [{
-                display: true,
-                gridLines: {
-                    display: true,
-                    color: bordercolor,
-                    zeroLineColor: bordercolor
-                },
-                ticks: {
-                    fontColor: bodycolor,
-
-                }
-            }]
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    };
-
-    window.chartColors = {
-        red: 'rgb(30, 61, 115)',
-        orange: 'rgb(23, 162, 184)',
-        yellow: 'rgb(30, 224, 172)',
-        green: 'rgb(75, 192, 192)',
-        blue: 'rgb(54, 162, 235)',
-        purple: 'rgb(153, 102, 255)',
-        grey: 'rgb(201, 203, 207)'
-    };
-    var color = Chart.helpers.color;
-
-    
-    /////////////////////////////////////////// Sampah Organik ///////////////////////////////////////////////////
-    var barChartDataMingguanOrganik = {
-        labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
-        datasets: [{
-            label: 'Tinggi Sampah',
-            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.red,
-            borderWidth: 1,
-            data: [35, 60, 10, 30, 25, 90, 70]
-
-        }, {
-            label: 'Gas Metana',
-            backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.blue,
-            borderWidth: 1,
-            data: [70, 55, 90, 10, 25, 70, 40]
-        }]
-
-    };
-
-    var barChartDataBulananOrganik = {
-        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
-        datasets: [{
-            label: 'Tinggi Sampah',
-            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.red,
-            borderWidth: 1,
-            data: [35, 60, 10, 30, 25, 90, 70, 20, 30, 23, 34, 11]
-
-        }, {
-            label: 'Gas Metana',
-            backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.blue,
-            borderWidth: 1,
-            data: [70, 55, 90, 90, 25, 70, 40, 22, 35, 45, 11, 30]
-        }]
-
-    };
-
-    var grafik_mingguan_organik = document.getElementById("grafik-mingguan-organik");
-    if (grafik_mingguan_organik) {
-        var ctx = document.getElementById('grafik-mingguan-organik').getContext('2d');
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            maintainAspectRatio: false,
-            responsive: true,
-            data: barChartDataMingguanOrganik,
-            options
-        });
+    });
 
 
-    }
-
-    var grafik_bulanan_organik = document.getElementById("grafik-bulanan-organik");
-    if (grafik_bulanan_organik) {
-        var ctx = document.getElementById('grafik-bulanan-organik').getContext('2d');
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            maintainAspectRatio: false,
-            responsive: true,
-            data: barChartDataBulananOrganik,
-            options
-        });
-
-
-    }
-
-
-    /////////////////////////////////////////// Sampah Non Organik ///////////////////////////////////////////////////
-    var barChartDataMingguanAnorganik = {
-        labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
-        datasets: [{
-            label: 'Tinggi Sampah',
-            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.red,
-            borderWidth: 1,
-            data: [35, 60, 10, 30, 25, 90, 70]
-
-        }, {
-            label: 'Gas Metana',
-            backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.blue,
-            borderWidth: 1,
-            data: [70, 55, 90, 10, 25, 70, 40]
-        }]
-
-    };
-
-    var barChartDataBulananAnorganik = {
-        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
-        datasets: [{
-            label: 'Tinggi Sampah',
-            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.red,
-            borderWidth: 1,
-            data: [35, 60, 10, 30, 25, 90, 70, 20, 30, 23, 34, 11]
-
-        }, {
-            label: 'Gas Metana',
-            backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.blue,
-            borderWidth: 1,
-            data: [70, 55, 90, 90, 25, 70, 40, 22, 35, 45, 11, 30]
-        }]
-
-    };
-
-    var grafik_mingguan_anorganik = document.getElementById("grafik-mingguan-anorganik");
-    if (grafik_mingguan_anorganik) {
-        var ctx = document.getElementById('grafik-mingguan-anorganik').getContext('2d');
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            maintainAspectRatio: false,
-            responsive: true,
-            data: barChartDataMingguanAnorganik,
-            options
-        });
-
-
-    }
-
-    var grafik_bulanan_anorganik = document.getElementById("grafik-bulanan-anorganik");
-    if (grafik_bulanan_anorganik) {
-        var ctx = document.getElementById('grafik-bulanan-anorganik').getContext('2d');
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            maintainAspectRatio: false,
-            responsive: true,
-            data: barChartDataBulananAnorganik,
-            options
-        });
-
-
-    }
+    var ctx = document.getElementById("myGrafik").getContext('2d');
+    var myGrafik = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?php echo json_encode($tg) ?>,
+            datasets: [{
+                label: 'Tinggi',
+                data: <?php echo json_encode($t) ?>,
+                backgroundColor: [
+                    'rgba(220, 234, 85, 0.5)',
+                    'rgba(220, 234, 85, 0.5)',
+                    'rgba(220, 234, 85, 0.5)',
+                    'rgba(220, 234, 85, 0.5)',
+                    'rgba(220, 234, 85, 0.5)',
+                    'rgba(220, 234, 85, 0.5)',
+                    'rgba(220, 234, 85, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(220, 234, 85, 1)',
+                    'rgba(220, 234, 85, 1)',
+                    'rgba(220, 234, 85, 1)',
+                    'rgba(220, 234, 85, 1)',
+                    'rgba(220, 234, 85, 1)',
+                    'rgba(220, 234, 85, 1)',
+                    'rgba(220, 234, 85, 1)',
+                ],
+                borderWidth: 1
+            },{
+                label: 'Metana',
+                data: <?php echo json_encode($m) ?>,
+                backgroundColor: [
+                    'rgba(128, 114, 27, 0.5)',
+                    'rgba(128, 114, 27, 0.5)',
+                    'rgba(128, 114, 27, 0.5)',
+                    'rgba(128, 114, 27, 0.5)',
+                    'rgba(128, 114, 27, 0.5)',
+                    'rgba(128, 114, 27, 0.5)',
+                    'rgba(128, 114, 27, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(128, 114, 27, 1)',
+                    'rgba(128, 114, 27, 1)',
+                    'rgba(128, 114, 27, 1)',
+                    'rgba(128, 114, 27, 1)',
+                    'rgba(128, 114, 27, 1)',
+                    'rgba(128, 114, 27, 1)',
+                    'rgba(128, 114, 27, 1)',
+                ],
+                borderWidth: 1
+            }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 </script>
+
+<?= $this->endSection(); ?>

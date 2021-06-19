@@ -33,6 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Main::index');
 $routes->get('/Main/save_sampah_organik/(:segment)/(:segment)', 'Pages::save_sampah_organik/$1/$2/$3');
+$routes->get('/grafik', 'Main::grafik');
 
 /*
  * --------------------------------------------------------------------

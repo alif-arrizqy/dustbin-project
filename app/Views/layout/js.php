@@ -10,9 +10,6 @@
 <script src="<?= base_url('public/dist/js/app.js') ?>"></script>
 <!-- END: APP JS-->
 
-<!-- START: Page Vendor JS Charts-->
-<script src="<?= base_url('public/dist/vendors/chartjs/Chart.min.js') ?>"></script>
-<!-- END: Page Vendor JS Charts-->
 
 <!-- START: Page Vendor JS for Datatable-->
 <script src="<?= base_url('public/dist/vendors/datatable/js/jquery.dataTables.min.js') ?>"></script>
@@ -30,6 +27,5 @@
 
 <!-- START: Page JS-->
 <script src="<?= base_url('public/dist/js/home.script.js') ?>"></script>
-<script src="<?= base_url('public/dist/js/chartjs.script.js') ?>"></script>
 <script src="<?= base_url('public/dist/js/datatable.script.js') ?>"></script>
 <!-- END: Page JS-->

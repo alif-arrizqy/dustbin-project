@@ -9,12 +9,3 @@ $tahun = date("Y"); ?>
     <i class="icon-arrow-up"></i>
 </a>
 <!-- END: Back to top-->
-
-
-<!-- JS  -->
-<!-- </body> -->
-<!-- END: Body-->
-
-<!-- Mirrored from html.designstream.co.in/pick/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Mar 2021 07:00:28 GMT -->
-
-<!-- </html> -->

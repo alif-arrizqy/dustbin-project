@@ -13,7 +13,6 @@
 
 <body id="main-container" class="default">
     <?= $this->include('layout/header') ?>
-    <?= $this->include('layout/menu') ?>
     <!-- Content -->
     <?= $this->renderSection('content'); ?>
     <!-- Footer -->
